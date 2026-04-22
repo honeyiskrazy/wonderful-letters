@@ -8,7 +8,7 @@
 
     // ─── Preloader ───────────────────────────────────────────────
     const preloader = document.getElementById('preloader');
-    const PRELOADER_DURATION = 8000; // 0.5s delay + 5.5s draw + 1.2s fill + buffer
+    const PRELOADER_DURATION = 6000; // 0.5s delay + 3.5s write-to-bold + 0.8s bold + 1.2s hold
 
     function hidePreloader() {
         if (!preloader) return;

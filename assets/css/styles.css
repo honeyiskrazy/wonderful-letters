@@ -40,6 +40,12 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
     overflow-x: hidden;
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+html::-webkit-scrollbar {
+    display: none;
 }
 
 body {
@@ -100,19 +106,20 @@ img {
     stroke-width: 1.5px;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke-dasharray: 3000;
-    stroke-dashoffset: 3000;
+    /* Safe low value to ensure writing never finishes early */
+    stroke-dasharray: 1400;
+    stroke-dashoffset: 1400;
     animation:
-        drawText 5.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) 0.5s forwards,
-        fillText 1.2s ease-in-out 5.8s forwards;
+        drawText 5.0s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards,
+        fillText 0.8s ease-in-out 3.5s forwards;
 }
 
 @keyframes drawText {
     to { stroke-dashoffset: 0; }
 }
 @keyframes fillText {
-    0%   { fill: transparent; stroke-opacity: 1; stroke-width: 1.5px; }
-    100% { fill: #000000; stroke: #000000; stroke-width: 2.5px; }
+    0%   { fill: transparent; stroke: var(--ink); stroke-width: 1.2px; }
+    100% { fill: #000000; stroke: #000000; stroke-width: 2.4px; }
 }
 
 /* Progress bar below the text */
@@ -128,7 +135,8 @@ img {
     width: 0%;
     background: linear-gradient(90deg, var(--blush), var(--gold));
     border-radius: 999px;
-    animation: barFill 7s cubic-bezier(0.45, 0.05, 0.55, 0.95) 0.5s forwards;
+    /* Aligned to end when the bolding is fully settled (0.5 + 3.5 + 0.8 = 4.8s) */
+    animation: barFill 4.3s linear 0.5s forwards;
 }
 @keyframes barFill {
     to { width: 100%; }
@@ -276,13 +284,13 @@ img {
     box-shadow: var(--shadow-sm);
 }
 .btn-insta {
-    background: var(--white);
-    color: var(--insta);
+    background: var(--ink);
+    color: var(--white);
     font-weight: 600;
     box-shadow: var(--shadow-md);
 }
 .btn-insta:hover {
-    background: var(--insta);
+    background: var(--gold);
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
@@ -659,17 +667,19 @@ img {
 
 /* ─── Instagram CTA ─────────────────────────────────────── */
 .instagram-cta-section {
-    background: linear-gradient(135deg, #E1306C 0%, #833AB4 60%, #405DE6 100%);
-    padding: 5rem 1.5rem;
+    background: linear-gradient(135deg, var(--teal-light) 0%, var(--blush-light) 100%);
+    padding: 6rem 1.5rem;
     position: relative;
     z-index: 1;
     overflow: hidden;
+    border-top: 1px solid rgba(168,208,214,0.3);
+    border-bottom: 1px solid rgba(234,200,209,0.3);
 }
 .instagram-cta-section::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232A2A2A' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
     z-index: 0;
 }
 .instagram-cta-inner {
