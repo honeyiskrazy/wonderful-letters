@@ -1,3 +1,2 @@
 # Cloudflare Pages redirects
-# Redirect www to non-www
-https://www.wonderfulletters.com/* https://wonderfulletters.com/:splat 301
+# Path-based redirects go here (e.g., /old /new 301)
