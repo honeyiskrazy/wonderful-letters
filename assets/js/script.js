@@ -1,12 +1,12 @@
 /**
- * script.js — Wonderful Letters
+ * script.js - Wonderful Letters
  * Production-ready: preloader, scroll animations, smooth UX
  */
 
 (function () {
     'use strict';
 
-    // ─── Preloader ───────────────────────────────────────────────
+    // --- Preloader -----------------------------------------------
     const preloader = document.getElementById('preloader');
     const PRELOADER_DURATION = 6000; // 0.5s delay + 3.5s write-to-bold + 0.8s bold + 1.2s hold
 
@@ -27,7 +27,7 @@
         setTimeout(hidePreloader, PRELOADER_DURATION);
     }
 
-    // ─── Scroll Animations ───────────────────────────────────────
+    // --- Scroll Animations ---------------------------------------
     function initScrollAnimations() {
         const els = document.querySelectorAll('.scroll-animate');
         if (!els.length) return;
@@ -53,7 +53,7 @@
         els.forEach(el => observer.observe(el));
     }
 
-    // ─── Stagger grid items ──────────────────────────────────────
+    // --- Stagger grid items --------------------------------------
     function initStagger() {
         const grids = document.querySelectorAll('.product-grid, .how-grid, .reviews-grid');
         grids.forEach(grid => {
@@ -64,24 +64,28 @@
         });
     }
 
-    // ─── Smooth scroll for anchor links ─────────────────────────
+    // --- Smooth scroll for anchor links --------------------------
     function initSmoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', function (e) {
                 const id = this.getAttribute('href');
-                if (id === '#') return;
+                if (id === '#') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
                 const target = document.querySelector(id);
                 if (target) {
                     e.preventDefault();
                     const offset = 70;
-                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
                     window.scrollTo({ top, behavior: 'smooth' });
                 }
             });
         });
     }
 
-    // ─── Navbar shadow on scroll ─────────────────────────────────
+    // --- Navbar shadow on scroll ---------------------------------
     function initNavbar() {
         const navbar = document.querySelector('.navbar');
         if (!navbar) return;
@@ -92,7 +96,7 @@
         }, { passive: true });
     }
 
-    // ─── Init all ────────────────────────────────────────────────
+    // --- Init all ------------------------------------------------
     document.addEventListener('DOMContentLoaded', () => {
         initScrollAnimations();
         initStagger();
@@ -101,3 +105,6 @@
     });
 
 })();
+
+
+
