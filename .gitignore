@@ -3,18 +3,23 @@
 Thumbs.db
 desktop.ini
 
+# Git
+.git/
+
 # Editor
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# Node (if added later)
+# Node
 node_modules/
 npm-debug.log*
 
 # Cloudflare / Wrangler
 .wrangler/
+wrangler.jsonc
+.ignore
 
 # Env files
 .env
