@@ -24,3 +24,7 @@ wrangler.jsonc
 # Env files
 .env
 .env.local
+
+.dev.vars*
+!.dev.vars.example
+!.env.example
